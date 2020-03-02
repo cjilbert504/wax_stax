@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   get "/users" do
     erb :"/users/index.html"
   end
-
   
   get "/signup" do
     erb :"/users/new.html"
@@ -17,6 +16,20 @@ class UsersController < ApplicationController
     @user = User.create(:username => params[:username], :password => params[:password])
     session[:user_id] = @user.id
     redirect "/users/#{@user.id}"
+  end
+
+  get "/login" do
+    erb :"/users/login.html"
+  end
+
+  post "/login" do
+    user = User.find_by(:username => params[:username])
+    binding.pry 
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect to "/users/#{user.id}"
+    end
+    redirect to "/login"
   end
 
   get "/users/:id" do
