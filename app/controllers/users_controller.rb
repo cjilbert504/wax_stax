@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     erb :"/users/index.html"
   end
   
-  get "/signup" do
+  get "/signup/new" do
     erb :"/users/new.html"
   end
 
@@ -44,14 +44,16 @@ class UsersController < ApplicationController
     erb :"/users/show.html"
   end
 
-  # GET: /users/5/edit
   get "/users/:id/edit" do
+    @user = User.find(params[:id])
     erb :"/users/edit.html"
   end
 
-  # PATCH: /users/5
   patch "/users/:id" do
-    redirect "/users/:id"
+    @user = User.find(params[:id])
+    @user.username = params[:username]
+    @user.save
+    redirect to "/users/#{@user.id}"
   end
 
   # DELETE: /users/5/delete

@@ -5,6 +5,10 @@ Username: <%= @user.username %><br>
 
 <a href="/vinyl_records/new"><h3>Add A Record To Your Crate</h3></a><br>
  
+<form action="/users/<%= @user.id %>/edit" method="get">
+    <input type="submit" value="Edit Account">
+</form>
+
 <form action="/logout" method="POST">
-<input type="submit" value="Log Out">
+    <input type="submit" value="Log Out">
 </form>
