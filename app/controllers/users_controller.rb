@@ -51,8 +51,7 @@ class UsersController < ApplicationController
 
   patch "/users/:id" do
     @user = User.find(params[:id])
-    @user.username = params[:username]
-    @user.save
+    @user.update(:username => params[:username])
     redirect to "/users/#{@user.id}"
   end
 
