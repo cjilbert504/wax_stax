@@ -1,1 +1,7 @@
-<h1>This is the Model's index page.</h1>
+<h2>Crate Diggers</h2>
+<h5 style="text-align:center;">Click on a user to view their crate</h5> 
+
+<% @users.each do |user| %>
+    <h4><a href="/users/<%= user.id %>"><%= user.username %></a></h4>
+    <% end %>
+    
