@@ -9,7 +9,6 @@ class VinylRecordsController < ApplicationController
     erb :"/vinyl_records/new.html"
   end
 
-  # POST: /vinyl_records
   post "/vinyl_records" do
     redirect "/vinyl_records"
   end
