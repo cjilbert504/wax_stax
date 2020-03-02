@@ -1,9 +1,15 @@
 <h3>Your Account</h3><br>
-Username: <%= @user.username %><br>
+<h4>Welcome back, <%= @user.username %><br></h4>
 
-<a href=""><h3>Current Records In Your Crate</h3></a><br>
+<br>
+<form action="" method="get">
+    <input type="submit" value="View Current Records In Your Crate">
+</form>
 
-<a href="/vinyl_records/new"><h3>Add A Record To Your Crate</h3></a><br>
+
+<form action="/vinyl_records/new" method="get">
+    <input type="submit" value="Add A Record To Your Crate">
+</form>
  
 <form action="/users/<%= @user.id %>/edit" method="get">
     <input type="submit" value="Edit Account">

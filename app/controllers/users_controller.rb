@@ -51,8 +51,11 @@ class UsersController < ApplicationController
 
   patch "/users/:id" do
     @user = User.find(params[:id])
-    @user.update(:username => params[:username])
-    redirect to "/users/#{@user.id}"
+    if @user.authenticate(params[:password])
+      @user.update(:username => params[:username], :password => params[:password])
+      redirect to "/users/#{@user.id}"
+    end
+    redirect to "/users/#{@user.id}/edit"
   end
 
   # DELETE: /users/5/delete
