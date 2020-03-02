@@ -6,7 +6,12 @@ class UsersController < ApplicationController
   end
   
   get "/signup/new" do
-    erb :"/users/new.html"
+    if !session[:user_id]
+      erb :"/users/new.html"
+    else
+    user = User.find(session[:user_id])
+    redirect "/users/#{user.id}"
+    end
   end
 
   post "/signup" do
@@ -19,7 +24,12 @@ class UsersController < ApplicationController
   end
 
   get "/login" do
+    if !session[:user_id]
     erb :"/users/login.html"
+    else
+      user = User.find(session[:user_id])
+      redirect to "/users/#{user.id}"
+    end
   end
 
   post "/login" do
