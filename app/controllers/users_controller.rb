@@ -5,14 +5,14 @@ class UsersController < ApplicationController
     erb :"/users/index.html"
   end
 
-  # GET: /users/new
-  get "/users/new" do
+  
+  get "/signup" do
     erb :"/users/new.html"
   end
 
-  # POST: /users
-  post "/users" do
-    redirect "/users"
+ 
+  post "/signup" do
+    
   end
 
   # GET: /users/5
