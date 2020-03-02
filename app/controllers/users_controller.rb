@@ -58,8 +58,9 @@ class UsersController < ApplicationController
     redirect to "/users/#{@user.id}/edit"
   end
 
-  # DELETE: /users/5/delete
-  delete "/users/:id/delete" do
-    redirect "/users"
+  delete "/users/:id" do
+    @user = User.find(params[:id])
+    @user.delete
+    redirect "/"
   end
 end
