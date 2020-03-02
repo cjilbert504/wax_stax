@@ -5,7 +5,6 @@ class VinylRecordsController < ApplicationController
     erb :"/vinyl_records/index.html"
   end
 
-  # GET: /vinyl_records/new
   get "/vinyl_records/new" do
     erb :"/vinyl_records/new.html"
   end
