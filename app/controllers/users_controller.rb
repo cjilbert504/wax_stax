@@ -25,12 +25,10 @@ class UsersController < ApplicationController
   end
 
   get "/login" do
-    if !session[:user_id]
-    erb :"/users/login.html"
+    if is_logged_in?
+      redirect to "/users/#{current_user.id}"
     else
-      user = User.find(session[:user_id])
-      redirect to "/users/#{user.id}"
-      # instead use current_user.id in line 31, remove line 30
+      erb :"/users/login.html"
     end
   end
 
@@ -46,7 +44,7 @@ class UsersController < ApplicationController
   get "/logout" do
     if session[:user_id] != nil
       session.clear
-      erb :index
+      redirect to "/"
     end
   end
 
