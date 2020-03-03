@@ -23,7 +23,7 @@ class VinylRecordsController < ApplicationController
   end
 
   get "/vinyl_records/:id" do
-
+    @vinyl_record = VinylRecord.find(params[:id])
     erb :"/vinyl_records/show.html"
   end
 
