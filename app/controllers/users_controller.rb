@@ -6,12 +6,10 @@ class UsersController < ApplicationController
   end
   
   get "/signup/new" do
-    #use is_looged_in? helper instead
-    if !session[:user_id]
-      erb :"/users/new.html"
+    if is_logged_in?
+      redirect to "/users/#{current_user.id}"
     else
-    user = User.find(session[:user_id])
-    redirect "/users/#{user.id}"
+      erb :"/users/new.html"
     end
   end
 
@@ -19,9 +17,9 @@ class UsersController < ApplicationController
     if params[:username].empty? || params[:password].empty?
       redirect to '/signup/new'
     end
-    @user = User.create(:username => params[:username], :password => params[:password])
-    session[:user_id] = @user.id
-    redirect "/users/#{@user.id}"
+      @user = User.create(:username => params[:username], :password => params[:password])
+      session[:user_id] = @user.id
+      redirect "/users/#{@user.id}"
   end
 
   get "/login" do
