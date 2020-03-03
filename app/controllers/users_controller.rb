@@ -41,7 +41,6 @@ class UsersController < ApplicationController
     redirect to "/login"
   end
 
-  # Make Log out ability accessible across all views
   get "/logout" do
     if session[:user_id] != nil
       session.clear

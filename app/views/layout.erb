@@ -20,6 +20,7 @@
 <li><a href="/users">Browse Crate Diggers</a></li>
   <li><a href="/login">Login</a></li>
   <li><a href="/logout">Log Out</a></li>
+  <li><a href="/users/<%= current_user.id %>">My Account</a></li>
   <li><a href="/">Home</a></li>
 </ul>
 <% else %>
@@ -48,3 +49,5 @@
     <![endif]-->
   </body>
 </html>
+
+
