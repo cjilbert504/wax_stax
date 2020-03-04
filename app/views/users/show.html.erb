@@ -1,5 +1,5 @@
 <h3>Your Account</h3><br>
-<h4>Welcome back, <%= @user.username %><br></h4>
+<h4>Welcome, <%= @user.username %><br></h4>
 
 <br>
 <a href="/vinyl_records">View Current Records In Your Crate</a><br>
@@ -10,5 +10,5 @@
 <br>
 <form action="/users/<%= @user.id %>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete Account">
+    <input style="background-color:red;" type="submit" value="Delete Account">
 </form>
