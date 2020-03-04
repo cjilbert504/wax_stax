@@ -22,10 +22,17 @@ class VinylRecordsController < ApplicationController
     erb :"/vinyl_records/show.html"
   end
 
-  # still need to be able to tell a record that it belongs to a certain user
   get "/vinyl_records/:id/edit" do
     find_and_set_vinyl_record
-    erb :"/vinyl_records/edit.html"
+    if is_logged_in?
+      if @vinyl_record.user == current_user
+        erb :"/vinyl_records/edit.html"
+      else
+        redirect to "/users/#{current_user.id}"
+      end
+    else
+      redirect to "/"
+    end
   end
 
   patch "/vinyl_records/:id" do
