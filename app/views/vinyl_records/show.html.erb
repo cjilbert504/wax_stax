@@ -4,8 +4,9 @@
     <h2><%= @vinyl_record.genre %></h2>
     <h2><%= @vinyl_record.release_date %></h2>
 </div>
+
+<% if @vinyl_record.user == current_user %>
 <a href="/vinyl_records/<%= @vinyl_record.id %>/edit">Edit Record</a><br>
 <br>
-<form action=" " method="POST">
-    <input style="width:100px;" type="submit" value="Delete Record">
-</form>
+<a href="/vinyl_records/<%= @vinyl_record.id %>">Delete Record</a>
+<% end %>

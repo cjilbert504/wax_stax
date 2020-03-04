@@ -6,8 +6,6 @@
         <h2><%= vinyl_record.genre %></h2>
         <h2><%= vinyl_record.release_date %></h2>
     </div>
-    <form action="/vinyl_records/<%= vinyl_record.id %>/edit" method="get">
-        <input style="width:100px;" type="submit" value="Edit Record">
-    </form>
+    <a href="/vinyl_records/<%= vinyl_record.id %>/edit">Edit Record</a>
     <hr>
 <% end %>
