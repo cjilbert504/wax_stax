@@ -56,8 +56,16 @@ class VinylRecordsController < ApplicationController
 
   delete "/vinyl_records/:id" do
     find_and_set_vinyl_record
-    @vinyl_record.destroy
-    redirect to "users/#{current_user.id}"
+    if is_logged_in?
+      if @vinyl_record.user == current_user
+        @vinyl_record.destroy
+        redirect to "users/#{current_user.id}"
+      else
+        redirect to "/vinyl_records/#{@vinyl_record.id}"
+      end
+    else
+      redirect to "/"
+    end
   end
 
   private
