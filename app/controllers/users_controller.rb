@@ -62,7 +62,7 @@ class UsersController < ApplicationController
 
   delete "/users/:id" do
     find_and_set_user
-    @user.delete
+    @user.destroy
     session.clear
     redirect "/"
   end

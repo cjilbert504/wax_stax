@@ -7,7 +7,12 @@
         <h2><%= vinyl_record.release_date %></h2>
     </div>
     <% if vinyl_record.user == current_user %>
-        <a href="/vinyl_records/<%= vinyl_record.id %>/edit">Edit Record</a> 
+        <a href="/vinyl_records/<%= vinyl_record.id %>/edit">Edit Record</a><br>
+        <br>
+        <form action="/vinyl_records/<%= vinyl_record.id %>" method="POST">
+            <input id="hidden" type="hidden" name="_method" value="delete">
+            <input style="background-color:red;" type="submit" value="Delete Record">
+        </form>
     <% end %>
     <hr>
 <% end %>

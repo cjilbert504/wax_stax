@@ -54,9 +54,10 @@ class VinylRecordsController < ApplicationController
     end
   end
 
-  # DELETE: /vinyl_records/5/delete
-  delete "/vinyl_records/:id/delete" do
-    redirect "/vinyl_records"
+  delete "/vinyl_records/:id" do
+    find_and_set_vinyl_record
+    @vinyl_record.destroy
+    redirect to "users/#{current_user.id}"
   end
 
   private
