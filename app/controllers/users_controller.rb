@@ -1,9 +1,4 @@
 class UsersController < ApplicationController
-
-  get "/users" do
-    @users = User.all
-    erb :"/users/index.html"
-  end
   
   get "/signup/new" do
     if is_logged_in?

@@ -6,6 +6,8 @@
         <h2><%= vinyl_record.genre %></h2>
         <h2><%= vinyl_record.release_date %></h2>
     </div>
-    <a href="/vinyl_records/<%= vinyl_record.id %>/edit">Edit Record</a>
+    <% if vinyl_record.user == current_user %>
+        <a href="/vinyl_records/<%= vinyl_record.id %>/edit">Edit Record</a> 
+    <% end %>
     <hr>
 <% end %>
