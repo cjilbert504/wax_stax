@@ -47,17 +47,17 @@ class UsersController < ApplicationController
   end
 
   get "/users/:id" do
-    @user = User.find(params[:id])
+    find_and_set_user
     erb :"/users/show.html"
   end
 
   get "/users/:id/edit" do
-    @user = User.find(params[:id])
+    find_and_set_user
     erb :"/users/edit.html"
   end
 
   patch "/users/:id" do
-    @user = User.find(params[:id])
+    find_and_set_user
     if @user.authenticate(params[:password])
       @user.update(:username => params[:username], :password => params[:password])
       redirect to "/users/#{@user.id}"
@@ -66,9 +66,16 @@ class UsersController < ApplicationController
   end
 
   delete "/users/:id" do
-    @user = User.find(params[:id])
+    find_and_set_user
     @user.delete
     session.clear
     redirect "/"
   end
+
+  private
+
+  def find_and_set_user
+    @user = User.find(params[:id])
+  end
+
 end
