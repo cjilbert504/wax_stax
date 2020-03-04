@@ -22,6 +22,7 @@ class VinylRecordsController < ApplicationController
     erb :"/vinyl_records/show.html"
   end
 
+  # still need to be able to tell a record that it belongs to a certain user
   get "/vinyl_records/:id/edit" do
     @vinyl_record = VinylRecord.find(params[:id])
     erb :"/vinyl_records/edit.html"
