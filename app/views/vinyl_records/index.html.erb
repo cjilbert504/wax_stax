@@ -1,10 +1,13 @@
 
-<% @vinyl_records.each do |vinyl_record|%>
+<% @vinyl_records.each do |vinyl_record| %>
     <div style="width:200px; height:200px; border:5px solid yellow; padding:50px; margin:20px; background-color: #333; box-shadow: 0 8px 8px 0 rgba(0,0,0, 0.75)">
         <h2><%= vinyl_record.artist %></h2>
         <h2><%= vinyl_record.album %></h2>
         <h2><%= vinyl_record.genre %></h2>
         <h2><%= vinyl_record.release_date %></h2>
     </div>
+    <form action="/vinyl_records/<%= vinyl_record.id %>/edit" method="get">
+        <input style="width:100px;" type="submit" value="Edit Record">
+    </form>
     <hr>
 <% end %>
