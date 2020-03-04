@@ -1,5 +1,9 @@
 class VinylRecordsController < ApplicationController
 
+  get "/vinyl_records" do
+    erb :"/vinyl_records/index.html"
+  end
+
   get "/vinyl_records/new" do
     erb :"/vinyl_records/new.html"
   end
