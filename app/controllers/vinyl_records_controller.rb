@@ -1,7 +1,7 @@
 class VinylRecordsController < ApplicationController
 
   get "/vinyl_records" do
-    @vinyl_records = VinylRecord.all
+    @vinyl_records = current_user.vinyl_records
     erb :"/vinyl_records/index.html"
   end
 
