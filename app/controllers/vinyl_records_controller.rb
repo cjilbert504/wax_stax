@@ -18,18 +18,18 @@ class VinylRecordsController < ApplicationController
   end
 
   get "/vinyl_records/:id" do
-    @vinyl_record = VinylRecord.find(params[:id])
+    find_and_set_vinyl_record
     erb :"/vinyl_records/show.html"
   end
 
   # still need to be able to tell a record that it belongs to a certain user
   get "/vinyl_records/:id/edit" do
-    @vinyl_record = VinylRecord.find(params[:id])
+    find_and_set_vinyl_record
     erb :"/vinyl_records/edit.html"
   end
 
   patch "/vinyl_records/:id" do
-    @vinyl_record = VinylRecord.find(params[:id])
+    find_and_set_vinyl_record
     @vinyl_record.update(params[:record])
     redirect "/vinyl_records/#{@vinyl_record.id}"
   end
@@ -38,4 +38,11 @@ class VinylRecordsController < ApplicationController
   delete "/vinyl_records/:id/delete" do
     redirect "/vinyl_records"
   end
+
+  private
+
+  def find_and_set_vinyl_record
+    @vinyl_record = VinylRecord.find(params[:id])
+  end
+
 end
