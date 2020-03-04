@@ -4,9 +4,9 @@
     <h2><%= @vinyl_record.genre %></h2>
     <h2><%= @vinyl_record.release_date %></h2>
 </div>
-<form action=" " method="POST">
+<form action="/vinyl_records/<%= @vinyl_record.id %>/edit" method="get">
     <input style="width:100px;" type="submit" value="Edit Record">
-</form>
+</form><br>
 <form action=" " method="POST">
     <input style="width:100px;" type="submit" value="Delete Record">
 </form>

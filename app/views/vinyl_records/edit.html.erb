@@ -1,1 +1,13 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h3>Edit This Record Below:</h3><br>
+    <form action="/vinyl_records/<%= @vinyl_record.id %>" method="POST">
+        <input id="hidden" type="hidden" name="_method" value="patch">
+        <label>Artist: </label>
+            <input type="text" name="record[artist]" value="<%= @vinyl_record.artist %>"><br>
+        <label>Album: </label>
+            <input type="text" name="record[album]" value="<%= @vinyl_record.album %>"><br>
+        <label>Genre: </label>
+            <input type="text" name="record[genre]" value="<%= @vinyl_record.genre %>"><br>
+        <label>Release Date: </label>
+            <input type="text" name="record[release_date]" value="<%= @vinyl_record.release_date %>"><br>
+            <input type="submit" value="PUT IT BACK IN YOUR CRATE!">
+    </form>
