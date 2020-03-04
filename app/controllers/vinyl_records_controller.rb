@@ -37,8 +37,16 @@ class VinylRecordsController < ApplicationController
 
   patch "/vinyl_records/:id" do
     find_and_set_vinyl_record
-    @vinyl_record.update(params[:record])
-    redirect "/vinyl_records/#{@vinyl_record.id}"
+    if is_logged_in?
+      if @vinyl_record.user == current_user
+        @vinyl_record.update(params[:record])
+        redirect "/vinyl_records/#{@vinyl_record.id}"
+      else
+        redirect to "/users/#{current_user.id}"
+      end
+    else
+      redirect "/"
+    end
   end
 
   # DELETE: /vinyl_records/5/delete
