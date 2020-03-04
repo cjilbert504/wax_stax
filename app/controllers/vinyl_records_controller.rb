@@ -1,6 +1,7 @@
 class VinylRecordsController < ApplicationController
 
   get "/vinyl_records" do
+    @vinyl_records = VinylRecord.all
     erb :"/vinyl_records/index.html"
   end
 
