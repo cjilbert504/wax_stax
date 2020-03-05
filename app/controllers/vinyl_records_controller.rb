@@ -48,8 +48,10 @@ class VinylRecordsController < ApplicationController
     find_and_set_vinyl_record
     if @vinyl_record.user == current_user
       @vinyl_record.update(params[:record])
+      flash[:success] = "Record Successfully Updated!"
       redirect "/vinyl_records/#{@vinyl_record.id}"
     else
+      flash[:error] = "***You do not have the permissions to edit that record***"
       redirect to "/users/#{current_user.id}"
     end
   end
