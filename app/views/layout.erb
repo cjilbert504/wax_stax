@@ -32,6 +32,9 @@
 <br><br>
 </header>
     <div class="wrapper">
+      <% if flash[:error] %>
+        <h4 style="color:red;"><%= flash[:error] %></h4>
+      <% end %>
 
         <%= yield %>
 
