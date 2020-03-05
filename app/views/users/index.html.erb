@@ -1,5 +1,15 @@
 <h2>Wax Stax Users</h2>
 <% @users.each do |user| %>
-    <h4><a href="/users/<%= user.id %>"><%= user.username %></a></h4>
+    <hr>
+    <a href="/users/<%= user.id %>"><%= user.username %></a><br>
+        <% user.vinyl_records.each.with_index(1) do |vinyl_record, index| %>
+            <strong>Record <%= index %>. </strong>
+            <strong>Artist: </strong><%= vinyl_record.artist %>
+            <strong>Album: </strong><%= vinyl_record.album %>
+            <strong>Genre: </strong><%= vinyl_record.genre %>
+            <strong>Release Date: </strong><%= vinyl_record.release_date %>
+            <a href="/vinyl_records/<%= vinyl_record.id %>">View This Record</a>
+        <% end %>
+        <hr>
     <% end %>
     
