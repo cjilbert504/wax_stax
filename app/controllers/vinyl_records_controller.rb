@@ -15,13 +15,16 @@ class VinylRecordsController < ApplicationController
 
   post "/vinyl_records" do
     if !is_logged_in?
+      flash[:error] = "***You must be logged in to do this***"
       redirect to "/"
     end
     if params[:artist].empty? || params[:album].empty? || params[:genre].empty? || params[:release_date].empty?
+      flash[:error] = "***One or more fields left empty, please try again***"
       redirect to "/vinyl_records/new"
     else
       params[:user_id] = current_user.id
       vinyl_record = VinylRecord.create(params)
+      flash[:success] = "New Record Succesfully Created!"
       redirect "/vinyl_records/#{vinyl_record.id}"
     end
   end
