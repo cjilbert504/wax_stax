@@ -22,6 +22,11 @@ class UsersController < ApplicationController
       redirect to "/users/#{user.id}"
   end
 
+  get "/users/collections/:id" do
+    find_and_set_user
+    erb :"/users/collection.html"
+  end
+
   get "/login" do
     if is_logged_in?
       redirect to "/users/#{current_user.id}"
