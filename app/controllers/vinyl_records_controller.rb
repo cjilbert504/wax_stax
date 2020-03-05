@@ -60,8 +60,10 @@ class VinylRecordsController < ApplicationController
     find_and_set_vinyl_record
     if @vinyl_record.user == current_user
       @vinyl_record.destroy
+      flash[:success] = "Record Successfully Deleted!"
       redirect to "users/#{current_user.id}"
     else
+      flash[:error] = "***You do not have the permissions to delete that record***"
       redirect to "/vinyl_records/#{@vinyl_record.id}"
     end
   end
