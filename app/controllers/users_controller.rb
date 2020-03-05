@@ -82,6 +82,7 @@ class UsersController < ApplicationController
     find_and_set_user
     @user.destroy
     session.clear
+    flash[:success] = "YOUR ACCOUNT HAS BEEN DELETED!!!"
     redirect "/"
   end
 
