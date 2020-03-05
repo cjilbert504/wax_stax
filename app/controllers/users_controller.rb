@@ -32,6 +32,7 @@ class UsersController < ApplicationController
 
   get "/login" do
     if is_logged_in?
+      flash[:error] = "***You are already logged in***"
       redirect to "/users/#{current_user.id}"
     else
       erb :"/users/login.html"
