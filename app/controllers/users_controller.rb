@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   post "/users" do
     if params[:username].empty? || params[:password].empty?
-      flash[:signup_message] = "***One or more fields was left empty. Please try again***"
+      flash[:error] = "***One or more fields was left empty. Please try again***"
       redirect to '/signup/new'
     end
       user = User.create(params)
