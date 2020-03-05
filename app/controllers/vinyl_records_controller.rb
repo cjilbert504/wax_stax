@@ -39,6 +39,7 @@ class VinylRecordsController < ApplicationController
       if @vinyl_record.user == current_user
         erb :"/vinyl_records/edit.html"
       else
+        flash[:error] = "***You do not have the permissions to edit that record***"
         redirect to "/users/#{current_user.id}"
       end
   end
