@@ -71,8 +71,10 @@ class UsersController < ApplicationController
     find_and_set_user
     if @user.authenticate(params[:password])
       @user.update(:username => params[:username], :password => params[:password])
+      flash[:success] = "Account Updated!"
       redirect to "/users/#{@user.id}"
     end
+    flash[:error] = "***Invalid Username or Password***"
     redirect to "/users/#{@user.id}/edit"
   end
 
