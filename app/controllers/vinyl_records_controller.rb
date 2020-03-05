@@ -1,7 +1,6 @@
 class VinylRecordsController < ApplicationController
 
   before "/vinyl_records/:id*" do
-    find_and_set_vinyl_record
     is_logged_in?
   end
 
@@ -29,10 +28,12 @@ class VinylRecordsController < ApplicationController
   end
 
   get "/vinyl_records/:id" do
+    find_and_set_vinyl_record
     erb :"/vinyl_records/show.html"
   end
 
   get "/vinyl_records/:id/edit" do
+    find_and_set_vinyl_record
       if @vinyl_record.user == current_user
         erb :"/vinyl_records/edit.html"
       else
@@ -41,6 +42,7 @@ class VinylRecordsController < ApplicationController
   end
 
   patch "/vinyl_records/:id" do
+    find_and_set_vinyl_record
     if @vinyl_record.user == current_user
       @vinyl_record.update(params[:record])
       redirect "/vinyl_records/#{@vinyl_record.id}"
@@ -50,6 +52,7 @@ class VinylRecordsController < ApplicationController
   end
 
   delete "/vinyl_records/:id" do
+    find_and_set_vinyl_record
     if @vinyl_record.user == current_user
       @vinyl_record.destroy
       redirect to "users/#{current_user.id}"
