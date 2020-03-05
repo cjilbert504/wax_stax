@@ -1,5 +1,7 @@
 <h3>Sign Up for Wax Stax Below:</h3><br>
-
+<% if flash[:signup_message] %>
+    <h4 style="color:red;"><%= flash[:signup_message] %></h4>
+<% end %>
 <form action="/users" method="POST">
 
     <label>Username: </label>
