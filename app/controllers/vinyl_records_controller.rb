@@ -28,30 +28,32 @@ class VinylRecordsController < ApplicationController
   end
 
   get "/vinyl_records/:id/edit" do
-    find_and_set_vinyl_record
-    if is_logged_in?
-      if @vinyl_record.user == current_user
+    # find_and_set_vinyl_record
+    # if is_logged_in?
+    #   if @vinyl_record.user == current_user
+    if edit_delete_allowed?(find_and_set_vinyl_record)
         erb :"/vinyl_records/edit.html"
       else
         redirect to "/users/#{current_user.id}"
       end
-    else
-      redirect to "/"
-    end
+    # else
+    #   redirect to "/"
+    # end
   end
 
   patch "/vinyl_records/:id" do
-    find_and_set_vinyl_record
-    if is_logged_in?
-      if @vinyl_record.user == current_user
+    # find_and_set_vinyl_record
+    # if is_logged_in?
+    #   if @vinyl_record.user == current_user
+    if edit_delete_allowed?(find_and_set_vinyl_record)
         @vinyl_record.update(params[:record])
         redirect "/vinyl_records/#{@vinyl_record.id}"
       else
         redirect to "/users/#{current_user.id}"
       end
-    else
-      redirect "/"
-    end
+    # else
+    #   redirect "/"
+    # end
   end
 
   delete "/vinyl_records/:id" do
