@@ -4,9 +4,8 @@ class VinylRecordsController < ApplicationController
     is_logged_in?
   end
 
-
   get "/vinyl_records" do
-    @vinyl_records = current_user.vinyl_records
+    @vinyl_records = VinylRecord.all 
     erb :"/vinyl_records/index.html"
   end
 
