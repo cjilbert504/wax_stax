@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   
   get "/signup/new" do
     if is_logged_in?
+      flash[:error] = "***You already have an account and are logged in***"
       redirect to "/users/#{current_user.id}"
     else
       erb :"/users/new.html"
