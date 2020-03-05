@@ -23,18 +23,6 @@ class ApplicationController < Sinatra::Base
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
 
-    def edit_delete_allowed?(find_and_set_vinyl_record)
-      if is_logged_in?
-        if find_and_set_vinyl_record.user == current_user
-          true
-        else
-          false
-        end
-      else
-        false
-      end
-    end 
-
   end
 
 end
