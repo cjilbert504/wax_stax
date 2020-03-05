@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     end
       user = User.create(params)
       session[:user_id] = user.id
+      flash[:success] = "SUCCESS!"
       redirect to "/users/#{user.id}"
   end
 
