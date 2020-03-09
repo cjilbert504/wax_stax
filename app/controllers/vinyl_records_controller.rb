@@ -46,7 +46,10 @@ class VinylRecordsController < ApplicationController
 
   patch "/vinyl_records/:id" do
     find_and_set_vinyl_record
-    if @vinyl_record.user == current_user
+    if params[:record][:artist].empty? || params[:record][:album].empty? || params[:record][:genre].empty? || params[:record][:release_date].empty?
+      flash[:error] = "***One or more fields was left blank***"
+      redirect to "/vinyl_records/#{@vinyl_record.id}/edit"
+    elsif @vinyl_record.user == current_user
       @vinyl_record.update(params[:record])
       flash[:success] = "Record Successfully Updated!"
       redirect "/vinyl_records/#{@vinyl_record.id}"
