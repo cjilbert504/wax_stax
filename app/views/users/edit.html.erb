@@ -2,10 +2,10 @@
 
 <form action="/users/<%= @user.id %>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="patch">
-    <label>Username: </label>
+    <label>Username: </label><br>
         <input type="text" name="username" value="<%= @user.username %>"><br>
-    <label>Re-enter Password: <label>
-        <input type="password" name="password" required><br>
-        <input style="width:175px; padding: 5px; border-color:black;" type="submit" value="Update Account">
+    <label>Re-enter Password: <label><br>
+        <input type="password" name="password" placeholder="Enter password here" required><br>
+        <input style="width:175px; margin:10px; padding:5px; border-color:black; border-radius: 15px;" type="submit" value="Update Account">
 
 </form>

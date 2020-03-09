@@ -1,13 +1,13 @@
 <h3>Edit This Record Below:</h3><br>
     <form action="/vinyl_records/<%= @vinyl_record.id %>" method="POST">
         <input id="hidden" type="hidden" name="_method" value="patch">
-        <label>Artist: </label>
+        <label>Artist: </label><br>
             <input type="text" name="record[artist]" value="<%= @vinyl_record.artist %>"><br>
-        <label>Album: </label>
+        <label>Album: </label><br>
             <input type="text" name="record[album]" value="<%= @vinyl_record.album %>"><br>
-        <label>Genre: </label>
+        <label>Genre: </label><br>
             <input type="text" name="record[genre]" value="<%= @vinyl_record.genre %>"><br>
-        <label>Release Date: </label>
+        <label>Release Date: </label><br>
             <input type="text" name="record[release_date]" value="<%= @vinyl_record.release_date %>"><br><br>
-            <input style="width:175px; padding: 5px; border-color:black;" type="submit" value="PUT IT BACK IN YOUR CRATE!">
+            <input style="width:175px; margin:10px; padding:5px; border-color:black; border-radius: 15px;" type="submit" value="PUT IT BACK IN YOUR CRATE!">
     </form>
