@@ -4,15 +4,15 @@
 <br>
 <% if current_user.id == @user.id %>
 <br>
-<button style="width:175px;" onclick="window.location.href = '/users/collections/<%= @user.id %>';">View Your Collection</button>
+<button style="width:175px; padding: 5px; border-color:black;" onclick="window.location.href = '/users/collections/<%= @user.id %>';">View Your Collection</button>
 <br>
-<button style="width:175px;" onclick="window.location.href = '/vinyl_records/new';">Add A Record To Your Crate</button>
+<button style="width:175px; padding: 5px; border-color:black;" onclick="window.location.href = '/vinyl_records/new';">Add A Record To Your Crate</button>
 <br>
-<button style="width:175px;" onclick="window.location.href = '/users/<%= @user.id %>/edit';">Edit Account</button>
+<button style="width:175px; padding: 5px; border-color:black;" onclick="window.location.href = '/users/<%= @user.id %>/edit';">Edit Account</button>
 <br><br>
 <form action="/users/<%= @user.id %>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="delete">
-    <input style="background-color:red; width:175px;" type="submit" value="Delete Account">
+    <input style="background-color:red; width:175px; padding: 5px; border-color:black;" type="submit" value="Delete Account">
 </form>
 
     
