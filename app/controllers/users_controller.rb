@@ -69,7 +69,7 @@ class UsersController < ApplicationController
 
   patch "/users/:id" do
     find_and_set_user
-    if @user.authenticate(params[:password])
+    if @user.authenticate(params[:password]) && params[:username] != ""
       @user.update(:username => params[:username], :password => params[:password])
       flash[:success] = "Account Updated!"
       redirect to "/users/#{@user.id}"
