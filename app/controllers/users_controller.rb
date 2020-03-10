@@ -18,7 +18,6 @@ class UsersController < ApplicationController
     if params[:username].empty? || params[:password].empty?
       flash[:error] = "***One or more fields was left empty. Please try again***"
       redirect to '/signup/new'
-    # end
     elsif user = User.find_by(:username => params[:username])
       flash[:error] = "***Username is already taken***"
       redirect to '/signup/new'
