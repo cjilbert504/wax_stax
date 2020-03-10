@@ -1,9 +1,5 @@
 class VinylRecordsController < ApplicationController
 
-  before "/vinyl_records/:id*" do
-    is_logged_in?
-  end
-
   get "/vinyl_records" do
     @vinyl_records = VinylRecord.all 
     erb :"/vinyl_records/index.html"
@@ -35,13 +31,18 @@ class VinylRecordsController < ApplicationController
   end
 
   get "/vinyl_records/:id/edit" do
-    find_and_set_vinyl_record
-      if @vinyl_record.user == current_user
-        erb :"/vinyl_records/edit.html"
-      else
-        flash[:error] = "***You do not have the permissions to edit that record***"
-        redirect to "/users/#{current_user.id}"
-      end
+    if !is_logged_in?
+      flash[:error] = "***You must be logged in to do that***"
+      redirect to "/"
+    else
+      find_and_set_vinyl_record
+        if @vinyl_record.user == current_user
+          erb :"/vinyl_records/edit.html"
+        else
+          flash[:error] = "***You do not have the permissions to edit that record***"
+          redirect to "/users/#{current_user.id}"
+        end
+    end
   end
 
   patch "/vinyl_records/:id" do
@@ -60,14 +61,19 @@ class VinylRecordsController < ApplicationController
   end
 
   delete "/vinyl_records/:id" do
-    find_and_set_vinyl_record
-    if @vinyl_record.user == current_user
-      @vinyl_record.destroy
-      flash[:success] = "Record Successfully Deleted!"
-      redirect to "users/#{current_user.id}"
+    if !is_logged_in?
+      flash[:error] = "***You must be logged in to do that***"
+      redirect to "/"
     else
-      flash[:error] = "***You do not have the permissions to delete that record***"
-      redirect to "/vinyl_records/#{@vinyl_record.id}"
+      find_and_set_vinyl_record
+        if @vinyl_record.user == current_user
+          @vinyl_record.destroy
+          flash[:success] = "Record Successfully Deleted!"
+          redirect to "users/#{current_user.id}"
+        else
+          flash[:error] = "***You do not have the permissions to delete that record***"
+          redirect to "/"
+        end
     end
   end
 
