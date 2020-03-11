@@ -67,8 +67,13 @@ class UsersController < ApplicationController
   end
 
   get "/users/:id/edit" do
-    find_and_set_user
-    erb :"/users/edit.html"
+    if is_logged_in?
+      find_and_set_user
+      erb :"/users/edit.html"
+    else
+      flash[:error] = "***You do not have that permission***"
+      redirect to "/"
+    end
   end
 
   patch "/users/:id" do
