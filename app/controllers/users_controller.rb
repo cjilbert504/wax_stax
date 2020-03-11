@@ -62,8 +62,13 @@ class UsersController < ApplicationController
   end
 
   get "/users/:id" do
-    find_and_set_user
-    erb :"/users/show.html"
+    if is_logged_in?
+      find_and_set_user
+      erb :"/users/show.html"
+     else 
+      flash[:error] = "***You are not logged in***"
+      redirect to "/"
+    end
   end
 
   get "/users/:id/edit" do
@@ -98,7 +103,7 @@ class UsersController < ApplicationController
   private
 
   def find_and_set_user
-    @user = User.find(params[:id])
+    @user = User.find_by(:id => params[:id])
   end
 
 end
