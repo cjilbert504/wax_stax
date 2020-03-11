@@ -26,8 +26,11 @@ class VinylRecordsController < ApplicationController
   end
 
   get "/vinyl_records/:id" do
-    find_and_set_vinyl_record
-    erb :"/vinyl_records/show.html"
+    if find_and_set_vinyl_record
+      erb :"/vinyl_records/show.html"
+    else 
+      redirect to "/"
+    end
   end
 
   get "/vinyl_records/:id/edit" do
@@ -80,7 +83,7 @@ class VinylRecordsController < ApplicationController
   private
 
   def find_and_set_vinyl_record
-    @vinyl_record = VinylRecord.find(params[:id])
+    @vinyl_record = VinylRecord.find_by(:id => params[:id])
   end
 
 end
