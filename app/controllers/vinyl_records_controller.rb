@@ -14,14 +14,19 @@ class VinylRecordsController < ApplicationController
       flash[:error] = "***You must be logged in to do this***"
       redirect to "/"
     end
-    if params[:artist].empty? || params[:album].empty? || params[:genre].empty? || params[:release_date].empty?
+    # if params[:artist].empty? || params[:album].empty? || params[:genre].empty? || params[:release_date].empty?
+    if false
       flash[:error] = "***One or more fields left empty, please try again***"
       redirect to "/vinyl_records/new"
     else
-      params[:user_id] = current_user.id
-      vinyl_record = VinylRecord.create(params)
-      flash[:success] = "New Record Succesfully Created!"
-      redirect "/vinyl_records/#{vinyl_record.id}"
+      # params[:user_id] = current_user.id
+      @vinyl_record = current_user.vinyl_records.build(params)
+        if @vinyl_record.save
+          flash[:success] = "New Record Succesfully Created!"
+          redirect "/vinyl_records/#{@vinyl_record.id}"
+        else
+          erb :"/vinyl_records/new.html"
+        end
     end
   end
 

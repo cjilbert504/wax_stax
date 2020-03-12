@@ -19,3 +19,7 @@ group :test do
   gem 'rack-test'
   gem 'database_cleaner'
 end
+
+group :production do
+  gem 'pg', '1.2.2'
+end

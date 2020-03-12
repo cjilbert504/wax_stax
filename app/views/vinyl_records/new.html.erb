@@ -1,3 +1,12 @@
+<% if @vinyl_record && @vinyl_record.errors.any? %>
+    <% @vinyl_record.errors.full_messages.each do |x| %>
+        <%= x %>
+        <% end %>
+<% end %>
+
+
+
+
 <h3>Add A Record In Your Crate</h3><br>
     <form action="/vinyl_records" method="POST">
         <label>Artist: </label><br>

@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
   get "/users/collections/:id" do
     find_and_set_user
+    @collection = @user.vinyl_records
     erb :"/users/collection.html"
   end
 

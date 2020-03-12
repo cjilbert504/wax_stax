@@ -1,4 +1,4 @@
-<% @user.vinyl_records.each.with_index(1) do |vinyl_record, index| %>
+<% @collection.each.with_index(1) do |vinyl_record, index| %>
     <strong>Record <%= index %>. </strong>
     <strong>Artist: </strong><%= vinyl_record.artist %>
     <strong>Album: </strong><%= vinyl_record.album %>
